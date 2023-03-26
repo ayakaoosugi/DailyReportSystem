@@ -17,7 +17,7 @@ import lombok.Data;
 public class Authentication {
 
 
-    /** 主キー。自動生成 */
+    /** 主キー。自動生成.社員番号 */
     @Id
     @Column(length = 20, nullable = false)
     private String code;
