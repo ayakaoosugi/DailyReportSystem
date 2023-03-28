@@ -58,25 +58,16 @@ public class EmployeeController {
         // employee/detail.htmlに画面遷移
         return "employee/detail";
     }
-    
-    
-    // ----- 追加:ここから -----
-    /** Employee画面を表示 */
-    @GetMapping("/update/{id}/")
-    public String getEmployee(@PathVariable("code") String code,String name,String password,String role, Model model) {
+    @GetMapping(value = { "/update", "/update/{id}/" })
+    public String getUpdate(@PathVariable(name = "id", required = false) Integer id, Model model) {
+    	// idが指定されていたら検索結果、無ければ空のクラスを設定
+        Employee employee = id != null ? service.getEmployee(id) : new Employee();
         // Modelに登録
-        model.addAttribute("employee", service.getEmployee(code));
-        // Employee更新画面に遷移
+        model.addAttribute("employee", employee);
+        // employee/update.htmlに画面遷移
         return "employee/update";
     }
+   
 
-    /** User更新処理 */
-    @PostMapping("/update/{id}/")
-    public String postEmployee(Employee employee) {
-        // Employee登録
-        service.saveEmployee();
-        // 一覧画面にリダイレクト
-        return "redirect:/employee/list";
-    }
-    // ----- 追加:ここまで -----
 }
+    

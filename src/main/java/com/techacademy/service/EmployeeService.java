@@ -39,7 +39,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
     // ----- 追加:ここまで -----
-
+    /**Employeeを1件検索して返す */
 	public Employee getEmployee(Integer id) {
 		// TODO 自動生成されたメソッド・スタブ
 		return employeeRepository.findById(id).get() ;
