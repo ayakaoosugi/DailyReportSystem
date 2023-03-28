@@ -43,8 +43,5 @@ public class EmployeeService {
 	public Employee getEmployee(Integer id) {
 		// TODO 自動生成されたメソッド・スタブ
 		return employeeRepository.findById(id).get() ;
-	}
-
-
-	}
+	}}
 

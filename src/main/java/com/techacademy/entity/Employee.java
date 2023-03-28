@@ -15,6 +15,7 @@ import org.hibernate.annotations.Where;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
+import javax.persistence.CascadeType;
 
 @Data
 @Entity
@@ -45,7 +46,7 @@ public class  Employee{
     private LocalDateTime updated_at;
     
     // ----- 追加ここから -----
-    @OneToOne(mappedBy="employee")
+    @OneToOne(mappedBy="employee", cascade = CascadeType.ALL)
     private Authentication authentication;
     
     /** レコードが削除される前に行なう処理 */

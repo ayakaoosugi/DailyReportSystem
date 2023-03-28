@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
@@ -58,5 +59,24 @@ public class EmployeeController {
         return "employee/detail";
     }
     
-   
+    
+    // ----- 追加:ここから -----
+    /** Employee画面を表示 */
+    @GetMapping("/update/{id}/")
+    public String getEmployee(@PathVariable("code") String code,String name,String password,String role, Model model) {
+        // Modelに登録
+        model.addAttribute("employee", service.getEmployee(code));
+        // Employee更新画面に遷移
+        return "employee/update";
     }
+
+    /** User更新処理 */
+    @PostMapping("/update/{id}/")
+    public String postEmployee(Employee employee) {
+        // Employee登録
+        service.saveEmployee();
+        // 一覧画面にリダイレクト
+        return "redirect:/employee/list";
+    }
+    // ----- 追加:ここまで -----
+}
