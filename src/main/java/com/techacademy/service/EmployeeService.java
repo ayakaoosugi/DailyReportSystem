@@ -2,6 +2,7 @@ package com.techacademy.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +25,6 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
         
-    // ----- 追加:ここから -----
-
     /** employeeの登録を行なう */
     @Transactional
     public Employee saveEmployee(Employee employee) {
@@ -38,10 +37,18 @@ public class EmployeeService {
     	
         return employeeRepository.save(employee);
     }
-    // ----- 追加:ここまで -----
+   
     /**Employeeを1件検索して返す */
 	public Employee getEmployee(Integer id) {
 		// TODO 自動生成されたメソッド・スタブ
 		return employeeRepository.findById(id).get() ;
-	}}
+	}
 
+	/** Userの削除を行なう */
+	@Transactional
+	public void deleteEmployee(Set<Integer> idck) {
+		for (Integer id : idck) {
+			employeeRepository.deleteById(id);
+		}
+	}
+}

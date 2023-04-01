@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import java.util.Set;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,14 +71,21 @@ public class EmployeeController {
         return "employee/update";
     }
     //** Employee更新処理 */
-        @PostMapping("/update")
+        @PostMapping("/update/{id}")
         public String postUpdate(Employee employee) {
             // Employee登録
             service.saveEmployee(employee);
             // 一覧画面にリダイレクト
             return "redirect:/employee/list";
     }
-   
+        /**Employee削除処理 */
+        @PostMapping(path="list", params="deleteRun")
+        public String deleteRun(@RequestParam(name="idck") Set<Integer> idck, Model model) {
+            // Userを一括削除
+            service.deleteEmployee(idck);
+            // 一覧画面にリダイレクト
+            return "redirect:/employee/list";
+        }
 
 }
     
