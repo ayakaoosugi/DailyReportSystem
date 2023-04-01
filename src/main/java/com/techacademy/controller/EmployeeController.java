@@ -73,8 +73,9 @@ public class EmployeeController {
     //** Employee更新処理 */
         @PostMapping("/update/{id}")
         public String postUpdate(Employee employee) {
+       Employee updateEmployee =service.getEmployee(employee.getId());
             // Employee登録
-            service.saveEmployee(employee);
+            service.saveEmployee(updateEmployee);
             // 一覧画面にリダイレクト
             return "redirect:/employee/list";
     }
