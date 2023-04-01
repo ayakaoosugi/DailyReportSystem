@@ -43,7 +43,7 @@ public class EmployeeService {
 		return employeeRepository.findById(id).get() ;
 	}
 
-	/** Userの削除を行なう */
+	/** Employeeの削除を行なう */
 	@Transactional
 	public void deleteEmployee(Set<Integer> idck) {
 		for (Integer id : idck) {
