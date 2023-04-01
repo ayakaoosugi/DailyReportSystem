@@ -9,7 +9,7 @@
     <h1>日報管理システム</h1>
     
     <h1 th:text="'id:'+${employee.id}+'の従業員の詳細ページ'"> </h1>
-    <h2>(パスワードは変更する場合のみ入力してください)</h2>
+    <p>(パスワードは変更する場合のみ入力してください)</p>
      
      <form method="post" th:action="@{/employee/register}" th:object="${employee}">
         <label for="id">社員番号</label>

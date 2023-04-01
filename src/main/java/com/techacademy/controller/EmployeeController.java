@@ -58,6 +58,7 @@ public class EmployeeController {
         // employee/detail.htmlに画面遷移
         return "employee/detail";
     }
+    //-----更新画面-----
     @GetMapping(value = { "/update", "/update/{id}/" })
     public String getUpdate(@PathVariable(name = "id", required = false) Integer id, Model model) {
     	// idが指定されていたら検索結果、無ければ空のクラスを設定
@@ -66,6 +67,14 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         // employee/update.htmlに画面遷移
         return "employee/update";
+    }
+    //** Employee更新処理 */
+        @PostMapping("/update")
+        public String postUpdate(Employee employee) {
+            // Employee登録
+            service.saveEmployee(employee);
+            // 一覧画面にリダイレクト
+            return "redirect:/employee/list";
     }
    
 

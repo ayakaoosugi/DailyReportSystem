@@ -19,7 +19,7 @@
             <tr><th>更新日時</th><td><input type="text"name="updated_at" th:value="*{updated_at}"></td></tr>
         </table>
         
-        <a th:href="@{employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a>
+        <a th:href="@{/employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a>
           <br>
            <a th:href="@{/employee/list}">一覧に戻る</a>
 </body>
