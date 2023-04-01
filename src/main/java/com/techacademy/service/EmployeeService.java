@@ -30,7 +30,6 @@ public class EmployeeService {
     public Employee saveEmployee(Employee employee) {
     	employee.setCreated_at(LocalDateTime.now());
     	employee.setUpdated_at(LocalDateTime.now());
-    	employee.setDelete_flag(0);
     	Authentication authentication=employee.getAuthentication();
     	authentication.setEmployee(employee);
     	employee.setAuthentication(authentication);
