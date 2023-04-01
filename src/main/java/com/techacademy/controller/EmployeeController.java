@@ -74,20 +74,24 @@ public class EmployeeController {
         public String postUpdate(Employee employee) {
        Employee updateEmployee =service.getEmployee(employee.getId());
        //テーブルを持ってくるために必要な部分↑
+       // ↓ここを追加　氏名、パスワード、権限を画面側から来た値へ置き換え
+       updateEmployee.setName(employee.getName());
+       updateEmployee.getAuthentication().setPassword(employee.getAuthentication().getPassword());
+       updateEmployee.getAuthentication().setRole(employee.getAuthentication().getRole());
+       // ↑ここを追加
             // Employee登録
             service.saveEmployee(updateEmployee);
             // 一覧画面にリダイレクト
             return "redirect:/employee/list";
     }
-        /**Employee削除処理 */
-        @GetMapping("/delete/{id}")
-        public String getDelete(Employee employee) {
-        	employee.setDelete_flag(1);
-            // Employee登録
-            service.saveEmployee(employee);
-            // 一覧画面にリダイレクト
-            return "redirect:/employee/list";
-        }
-        }
-
+        /** Employee削除処理 */
+    	@GetMapping("/delete/{id}") // ←このidからemployeeテーブルのレコードを取得
+    	public String getDelete(@PathVariable(name = "id", required = true) Integer id) {
+    		Employee employee = service.getEmployee(id); // ここで実際の取得
+    		employee.setDelete_flag(1);
+    		// Employee登録
+    		service.saveEmployee(employee);
+    		// 一覧画面にリダイレクト
+    		return "redirect:/employee/list";
+    	}}
     
