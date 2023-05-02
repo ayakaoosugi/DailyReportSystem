@@ -28,10 +28,11 @@ public class EmployeeService {
     /** employeeの登録を行なう */
     @Transactional
     public Employee saveEmployee(Employee employee) {
-    	employee.setCreated_at(LocalDateTime.now());
-    	employee.setUpdated_at(LocalDateTime.now());
+    	employee.setCreatedAt(LocalDateTime.now());
+    	employee.setUpdatedAt(LocalDateTime.now());
     	Authentication authentication=employee.getAuthentication();
     	authentication.setEmployee(employee);
+    	//テーブル側が持っている別の情報
     	employee.setAuthentication(authentication);
     	
         return employeeRepository.save(employee);

@@ -41,9 +41,14 @@ public class EmployeeController {
     /** Employee登録処理 */
     @PostMapping("/register")
     public String postRegister(Employee employee) {
-    	employee.setDelete_flag(0);
+    	try {
+    	employee.setDeleteFlag(0);
         // Employee登録
         service.saveEmployee(employee);
+    	}
+    	catch(Exception e) {
+    		return "employee/register";	
+    	}
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
@@ -64,10 +69,12 @@ public class EmployeeController {
     public String getUpdate(@PathVariable(name = "id", required = false) Integer id, Model model) {
     	// idが指定されていたら検索結果、無ければ空のクラスを設定
         Employee employee = id != null ? service.getEmployee(id) : new Employee();
+        employee.getAuthentication().setPassword("");
         // Modelに登録
         model.addAttribute("employee", employee);
         // employee/update.htmlに画面遷移
         return "employee/update";
+       
     }
     //** Employee更新処理 */
         @PostMapping("/update/{id}")
@@ -83,12 +90,14 @@ public class EmployeeController {
             service.saveEmployee(updateEmployee);
             // 一覧画面にリダイレクト
             return "redirect:/employee/list";
+            //分岐分を作成する　パスワードが空の場合とパスワードが入ってる場合　ifぶんで
+            //からっぽの場合はテーブル側のパスワードをsetする　からっぽじゃない場合　入ったものを暗号化してsetする
     }
         /** Employee削除処理 */
     	@GetMapping("/delete/{id}") // ←このidからemployeeテーブルのレコードを取得
     	public String getDelete(@PathVariable(name = "id", required = true) Integer id) {
     		Employee employee = service.getEmployee(id); // ここで実際の取得
-    		employee.setDelete_flag(1);
+    		employee.setDeleteFlag(1);
     		// Employee登録
     		service.saveEmployee(employee);
     		// 一覧画面にリダイレクト

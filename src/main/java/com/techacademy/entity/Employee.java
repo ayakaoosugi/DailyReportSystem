@@ -35,15 +35,15 @@ public class  Employee{
 
     /** 削除フラグ */
     @Column(nullable = false)
-    private Integer delete_flag;
-
+    private Integer deleteFlag;
     /** 登録日時 */
     @Column(nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     
     /** 更新日時 */
     @Column(nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
+    
     
     // ----- 追加ここから -----
     @OneToOne(mappedBy="employee", cascade = CascadeType.ALL)

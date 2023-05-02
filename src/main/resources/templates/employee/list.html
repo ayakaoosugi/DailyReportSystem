@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>日報管理システム</title>
-    <link rel="stylesheet" th:href="@{/css/employee/list.css}">
+<meta charset="utf-8">
+<title>日報管理システム</title>
+<link rel="stylesheet" th:href="@{/css/employee/list.css}">
 </head>
 <body>
-    <h1>日報管理システム</h1>
-    <h2>従業員　一覧</h2>
-    <table>
-        <tr>
-            <th>社員番号</th>
-            <th>氏名</th>
-            <th>操作</th>
-           
-        </tr>
-        <tr th:each="employee : ${employeelist}">
-            <td th:text="${employee.id}"></td>
-            <td th:text="${employee.name}"></td>
-            <td>
-                <a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を見る</a>
-            </td>
-        </tr>
-    </table>
-    <h2></h2>
-   <a th:href="@{/employee/register}">新規従業員の登録</a>
+	<h1>日報管理システム</h1>
+	<h2>従業員 一覧</h2>
+	<table>
+		<tr>
+			<th>社員番号</th>
+			<th>氏名</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="employee : ${employeelist}">
+			<td th:text="${employee.authentication.code}"></td>
+			<td th:text="${employee.name}"></td>
+			<td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を見る</a>
+			</td>
+		</tr>
+	</table>
+	<h2></h2>
+	<a th:href="@{/employee/register}">新規従業員の登録</a>
 </body>
 </html>
 
