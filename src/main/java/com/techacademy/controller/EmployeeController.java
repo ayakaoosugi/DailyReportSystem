@@ -62,7 +62,7 @@ public class EmployeeController {
         // Modelに登録
         model.addAttribute("employee", employee);
         // employee/detail.htmlに画面遷移
-        return "employee/detail"
+        return "employee/detail";
     }
     //-----更新画面-----
     @GetMapping(value = { "/update", "/update/{id}/" })
