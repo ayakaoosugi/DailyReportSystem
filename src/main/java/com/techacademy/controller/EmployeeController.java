@@ -92,7 +92,11 @@ public class EmployeeController {
             return "redirect:/employee/list";
             //分岐分を作成する　パスワードが空の場合とパスワードが入ってる場合　ifぶんで
             //からっぽの場合はテーブル側のパスワードをsetする　からっぽじゃない場合　入ったものを暗号化してsetする
-    }
+         
+            if(password!=null) {
+               password.setEmployee(null);
+        
+    }   
         /** Employee削除処理 */
     	@GetMapping("/delete/{id}") // ←このidからemployeeテーブルのレコードを取得
     	public String getDelete(@PathVariable(name = "id", required = true) Integer id) {
