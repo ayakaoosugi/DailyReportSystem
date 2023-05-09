@@ -6,17 +6,12 @@
 <link rel="stylesheet" th:href="@{/css/employee/list.css}">
 </head>
 <body>
-	<h1>日報管理システムへようこそ</h1>
-	<h2>【自分の日報一覧】</h2>
-	<p th:text="${name}"></p>
-	<form method="post" th:action="@{/logout}">
-        <input type="submit" value="ログアウト">
-    </form><br>
+	<h1>日報管理システム</h1>
+	<h2>従業員 一覧</h2>
 	<table>
 		<tr>
+			<th>社員番号</th>
 			<th>氏名</th>
-			<th>日付</th>
-			<th>タイトル</th>
 			<th>操作</th>
 		</tr>
 		<tr th:each="employee : ${employeelist}">
@@ -26,8 +21,11 @@
 			</td>
 		</tr>
 	</table>
-	<!-- <h2 th:text="'（全'+*{count}+'件）'"></h2>-->
-	<a th:href="@{/daily/register}">新規日報の登録</a>
-	<a th:href="@{/employee/list}">従業員管理</a>
+	<h2 th:text="'（全'+*{count}+'件）'"></h2>
+	<a th:href="@{/employee/register}">新規従業員の登録</a>
 </body>
 </html>
+
+
+
+

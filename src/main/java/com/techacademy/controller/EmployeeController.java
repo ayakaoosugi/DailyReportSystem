@@ -48,6 +48,12 @@ public class EmployeeController {
 	/** Employee登録処理 */
 	@PostMapping("/register")
 	public String postRegister(Employee employee) {
+		if(employee.getAuthentication().getCode().equals("") ||
+				employee.getName().equals("") ||
+				employee.getAuthentication().getPassword().equals("") ||
+				employee.getAuthentication().getRole()==null){
+			return "employee/register";
+		}
 		try {
 			employee.setCreatedAt(LocalDateTime.now());
 	    	employee.setUpdatedAt(LocalDateTime.now());
@@ -92,6 +98,11 @@ public class EmployeeController {
 	// ** Employee更新処理 */
 	@PostMapping("/update/{id}")
     public String postUpdate(Employee employee) {
+		if(employee.getAuthentication().getCode().equals("") ||
+				employee.getName().equals("") ||
+				employee.getAuthentication().getRole()==null) {
+			return "employee/update";
+		}
        Employee updateEmployee =service.getEmployee(employee.getId());
        //テーブルを持ってくるために必要な部分↑
        // ↓ここを追加　氏名、パスワード、権限を画面側から来た値へ置き換え
