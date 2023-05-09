@@ -29,6 +29,7 @@ public class EmployeeController {
 		model.addAttribute("employeelist", service.getEmployeeList());
 		int count=service.getEmployeeList().size();
 		model.addAttribute("count",count);
+		//↑全何件の出し方。
 		// employee/list.htmlに画面遷移
 		return "employee/list";
 	}
