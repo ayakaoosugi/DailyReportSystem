@@ -27,7 +27,7 @@ public class Authentication {
     private String password;
 
     /** 権限 */
-    private static enum Role{
+    public static enum Role{
     一般,管理者
     }
     @Column(length = 10,nullable=false)

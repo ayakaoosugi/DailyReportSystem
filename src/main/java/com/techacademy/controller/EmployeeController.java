@@ -2,6 +2,8 @@ package com.techacademy.controller;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,8 @@ import com.techacademy.service.EmployeeService;
 @RequestMapping("employee")
 public class EmployeeController {
 	private final EmployeeService service;
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	public EmployeeController(EmployeeService service) {
 		this.service = service;
 	}
@@ -49,6 +52,9 @@ public class EmployeeController {
 			employee.setCreatedAt(LocalDateTime.now());
 	    	employee.setUpdatedAt(LocalDateTime.now());
 			employee.setDeleteFlag(0);
+			String password=employee.getAuthentication().getPassword();
+			employee.getAuthentication().setPassword(passwordEncoder.encode(password));
+			//暗号化したパスワードを登録　上書き
 			// Employee登録
 			service.saveEmployee(employee);
 		} catch (Exception e) {
@@ -97,7 +103,8 @@ public class EmployeeController {
           //分岐分を作成する　パスワードが空の場合とパスワードが入ってる場合　ifぶんで
             //からっぽの場合はテーブル側のパスワードをsetする　からっぽじゃない場合　入ったものを暗号化してsetする
            if(!employee.getAuthentication().getPassword().equals("")) {
-        updateEmployee.getAuthentication().setPassword(employee.getAuthentication().getPassword());
+        	   String password=employee.getAuthentication().getPassword();
+        	   updateEmployee.getAuthentication().setPassword(passwordEncoder.encode(password));
            }
            service.saveEmployee(updateEmployee);
             // 一覧画面にリダイレクト
