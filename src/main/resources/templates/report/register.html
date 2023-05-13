@@ -3,30 +3,27 @@
 <head>
     <meta charset="utf-8">
     <title>日報管理システム</title>
-    <link rel="stylesheet" th:href="@{/css/employee/register.css}">
+    <link rel="stylesheet" th:href="@{/css/report/register.css}">
 </head>
 <body>
     <h1>日報管理システム</h1>
-    <h2>従業員　新規登録ページ</h2>
-    <form method="post" th:action="@{/employee/register}" th:object="${employee}">
-        <label for="id">社員番号</label>
-        <input type="text" th:field="*{authentication.code}">
+    <h2>日報　新規登録ページ</h2>
+    <form method="post" th:action="@{/report/register}" th:object="${report}">
+        <label for="reportDate">日付</label>
+        <input type="text" th:field="*{reportDate}">
         <br>
         <label for="name">氏名</label>
-     　　 <input type="text" th:field="*{name}">
+     　　<p th:text="${name}"></p>
         <br>
-        <label for="password">パスワード</label>
-     　　 <input type="text" th:field="*{authentication.password}">
+        <label for="title">タイトル</label>
+     　　 <input type="text" th:field="*{title}">
         <br>
-        <label for="role">権限</label>
-         <select th:field="*{authentication.role}">
-            <option value="" th:text="選択してください">
-            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
-        </select>
+        <label for="content">内容</label>
+          <input type="text" th:field="*{content}">
         <br>
         <br>
         <input type="submit" value="投稿">
-        <a th:href="@{/employee/list}">一覧に戻る</a>
+        <a th:href="@{/report/list}">一覧に戻る</a>
     </form>
 </body>
 </html>
