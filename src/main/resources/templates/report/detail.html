@@ -12,15 +12,15 @@
      <table  th:object="${report}">
      
      
-            <tr><th>氏名</th><td><input type="text" name="name"th:value="*{name}"></td></tr>
-            <tr><th>日付</th><td><input type="text" name="reportDate" th:value="*{reportDate}"></td></tr>
-      　　　　 <tr><th>タイトル</th><td><input type="text" name="title"th:value="*{title}"></td></tr>
-            <tr><th>内容</th><td><input type="text" name="content" th:value="*{content}"></td></tr>     
-            <tr><th>登録日時</th><td><input type="text"name="createdAt" th:value="*{createdAt}"></td></tr>
-            <tr><th>更新日時</th><td><input type="text"name="updatedAt" th:value="*{updatedAt}"></td></tr>
+            <tr><th>氏名</th><td><input type="text" name="name"th:value="*{employee.name}" readonly></td></tr>
+            <tr><th>日付</th><td><input type="text" name="reportDate" th:value="*{reportDate}" readonly></td></tr>
+      　　　　 <tr><th>タイトル</th><td><input type="text" name="title"th:value="*{title}" readonly></td></tr>
+            <tr><th>内容</th><td><input type="text" name="content" th:value="*{content}" readonly></td></tr>     
+            <tr><th>登録日時</th><td><input type="text"name="createdAt" th:value="*{createdAt}" readonly></td></tr>
+            <tr><th>更新日時</th><td><input type="text"name="updatedAt" th:value="*{updatedAt}" readonly></td></tr>
         </table>
         
-        <a th:href="@{/report/update/{id}/(id=${report.id})}">この日報を編集する</a>
+        <a th:if="${flag} eq 1" th:href="@{/report/update/{id}/(id=${report.id})}">この日報を編集する</a>
           <br>
            <a th:href="@{/report/list}">一覧に戻る</a>
 </body>

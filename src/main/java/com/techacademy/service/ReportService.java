@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.repository.ReportRepository;
 
@@ -40,6 +42,12 @@ public class ReportService {
 	public void deleteReport(Set<Integer> idck) {
 		for (Integer id : idck) {
 	       reportRepository.deleteById(id);
-		}
+	     
+		}	
 	}
+	/** 全件を検索して返す */
+    public List<Report> getReportEmployeeList(Employee employee) {
+        // リポジトリのfindAllメソッドを呼び出す
+        return reportRepository.findByEmployee(employee);
+    }
 }
